@@ -1,0 +1,30 @@
+<%= render 'banner' %>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>Nome</th>
+            <th>Número de Refeições </th>
+            <th>Cadastrada em</th>
+             <th colspan="2" ></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <% @meal_categories.each_with_index do |category, index| %>
+            <tr>
+                <td><%= category.name %></td>
+                <td>4</td>
+                <td><%= category.updated_at.strftime("%d/%m/%Y") %></td>
+                <td>
+                    <%= link_to 'editar', edit_meal_category_path(category), class: "btn btn-outline-warning bord"%>
+                </td>
+                <td>
+                    <%= link_to 'apagar', meal_category_path(category), 
+                    method: :delete, data: { confirm: "Tem certeza?" }, class: "btn btn-outline-danger bord"   %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+</br>
+<%= link_to  "nova categoria de refeição", new_meal_category_path, class: "btn btn-success" %>

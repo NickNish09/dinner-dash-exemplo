@@ -1,9 +1,21 @@
 <% if user_signed_in? %>
-    <%= link_to "Perfil", edit_user_registration_path %>
-    <%= link_to "Sair", destroy_user_session_path , method: :delete %>
-    </br>
-    <h1>Bem-vindo, <%="#{current_user.email}"  %></h1>
-    <h2>Monte o seu prato, escolha sua salada, molho, prato principal, guarnição e bebida</h2>
+    <% if current_user.is_admin? %>
+        <%= link_to "dinnerdash", root_path %> 
+        <%= link_to "Backoffice", meal_categories_path %> 
+        <%= link_to "Perfil", edit_user_registration_path %>
+        <%= link_to "Sair", destroy_user_session_path , method: :delete %>
+        </br>
+        <h1>Bem-vindo, <%="#{current_user.name}"  %></h1>
+        <h2>Monte o seu prato, escolha sua salada, molho, prato principal, guarnição e bebida</h2>
+    <% else %>
+        <%= link_to "dinnerdash", root_path %>    
+        <%= link_to "Perfil", edit_user_registration_path %>
+        <%= link_to "Sair", destroy_user_session_path , method: :delete %>
+        </br>
+        <h1>Bem-vindo, <%="#{current_user.name}"  %></h1>
+        <h2>Monte o seu prato, escolha sua salada, molho, prato principal, guarnição e bebida</h2>
+    <% end %>
+
 <% else %>
     <%= link_to "Entrar", new_user_session_path %>
     <%= link_to "Cadastro", new_user_registration_path %>
