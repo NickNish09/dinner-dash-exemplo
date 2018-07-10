@@ -7,7 +7,7 @@
 <% end %>
 <h3>Editar usuário</h3>
 <hr>
-<%= form_for @user do |f| %>
+<%= form_for(@user, url: all_user_path, method: :put) do |f| %>
  <div class="form-row">  
         <div class="form-group col-md-6">
             <% if erro == "name" %>

@@ -18,7 +18,7 @@
                 <td><%= meal.description %></td>
                 <td><%= meal.price %></td>
                 <td><%= MealCategory.all.find(meal.meal_category_id).name %></td>
-                <td><%= meal.image %></td>
+                <td><%=meal.image %></td>
                 <td>
                     <%= link_to 'editar', edit_meal_path(meal), class: "btn btn-outline-warning bord"%>
                 </td>
