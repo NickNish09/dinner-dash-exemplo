@@ -29,7 +29,7 @@
             <% if erro == "Perfil" %>
                  <div>
                     <%= f.label :Perfil %> <br />
-                    <%= collection_select(:user, :is_admin, User.all , :is_admin, :name, {:include_blank => "Escolha um Perfil"}, {class: "custom-select mr-sm-2 is-invalid"} ) %>
+                    <%= f.select(:is_admin,options_for_select([["Administrador", true], ["Padrão", false]]), {:include_blank => "Escolha um Perfil"}, {class: "custom-select mr-sm-2 is-invalid"} ) %>
                     <div class="invalid-feedback invalido">
                         Por selecione um Perfil!
                     </div>
@@ -37,7 +37,7 @@
             <% else %>
                 <div>
                     <%= f.label :Perfil %> <br />
-                    <%= collection_select(:user, :is_admin, User.all, :is_admin, :name, {:include_blank => "Escolha um Perfil"}, {class: "custom-select mr-sm-2 "} ) %>
+                    <%= f.select(:is_admin, options_for_select([["Administrador", true], ["Padrão", false]]), {:include_blank => "Escolha um Perfil"}, {class: "custom-select mr-sm-2 "} ) %>
                 </div>
             <% end %>
             </br>
