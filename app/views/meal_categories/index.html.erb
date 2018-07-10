@@ -14,7 +14,7 @@
             <tr>
                 <td><%= category.name %></td>
                 <td>4</td>
-                <td><%= category.updated_at.strftime("%d/%m/%Y") %></td>
+                <td><%= category.created_at.strftime("%d/%m/%Y") %></td>
                 <td>
                     <%= link_to 'editar', edit_meal_category_path(category), class: "btn btn-outline-warning bord"%>
                 </td>

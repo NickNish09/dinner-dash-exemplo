@@ -1,0 +1,89 @@
+<%= render 'banner' %>
+<% erro = [] %>
+   
+<% if @meal.errors %>
+    <% @meal.errors.each do |message| %>
+        <% erro.push(message.to_s) %>
+    <% end %>
+<% end %>
+<h3>Nova refeição</h3>
+<hr>
+<%= form_for @meal do |f| %>
+    <div class="form-row">  
+        <div class="form-group col-md-6">
+            <% if erro.include? "name" %>
+                <div>
+                    <%= f.label :Nome %> <br />
+                    <%= f.text_field :name, class: "form-control is-invalid" %>
+                    <div class="invalid-feedback invalido">
+                    Por favor insira um nome!
+                    </div>
+                </div>
+            <% else %>
+                <div>
+                    <%= f.label :Nome %> <br />
+                    <%= f.text_field :name, class: "form-control" %>
+                </div>
+            <% end %>
+        </div>
+        <div class="form-group col-md-6">
+            <% if erro.include? "meal_category" %>
+                <div>
+                    <%= f.label :Categoria %> <br />
+                    <%= collection_select(:meal, :meal_category_id,MealCategory.all, :id, :name, {:include_blank => "Escolha uma categoria"}, {class: "custom-select mr-sm-2 is-invalid"} ) %>
+                    <div class="invalid-feedback invalido">
+                        Por selecione uma categoria !
+                    </div>
+                </div>
+            <% else %>
+                <div>
+                    <%= f.label :Categoria %> <br />
+                    <%= collection_select(:meal, :meal_category_id,MealCategory.all, :id, :name, {:include_blank => "Escolha uma categoria"}, {class: "custom-select mr-sm-2 "} ) %>
+                </div>
+            <% end %>
+        </div>
+    </div>    
+
+        <% if erro.include? "description" %>
+            <div>
+                <%= f.label :Descrição %> <br />
+                <%= f.text_field :description, class: "form-control is-invalid" %>
+                <div class="invalid-feedback invalido">
+                Por favor insira uma descrição!
+                </div>
+            </div>
+        <% else %>
+            <div>
+                <%= f.label :Descrição %> <br />
+                <%= f.text_area :description, class: "form-control" %>
+            </div>
+        <% end %>
+
+    <div class="form-row">  
+        <div class="form-group col-md-6">
+            <% if erro.include? "price" %>
+                <div>
+                    <%= f.label :Preço %> <br />
+                    <%= f.text_field :price, class: "form-control is-invalid" %>
+                    <div class="invalid-feedback invalido">
+                    Por favor insira um Preço!
+                    </div>
+                </div>
+            <% else %>
+                <div>
+                    <%= f.label :Preço %> <br />
+                    <%= f.text_field :price, class: "form-control" %>
+                </div>
+            <% end %>
+        </div>
+        <div class="form-group col-md-6">
+            <div>
+                <%= f.label :Foto%> <br />
+                <%= f.file_field :image %>
+            </div>
+        </div>    
+    </div>    
+    </br>
+    <%= f.submit 'Criar refeição', class: "btn btn-success" %>
+    <%= link_to 'voltar', :back, class: "btn btn-secondary" %>
+<% end %>

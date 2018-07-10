@@ -1,0 +1,34 @@
+<%= render 'banner' %>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>Nome</th>
+            <th>Descrição </th>
+            <th>preço</th>
+            <th>Categoria</th>
+            <th>imagem</th>
+             <th colspan="2" ></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <% @meals.each_with_index do |meal, index| %>
+            <tr>
+                <td><%= meal.name %></td>
+                <td><%= meal.description %></td>
+                <td><%= meal.price %></td>
+                <td><%= MealCategory.all.find(meal.meal_category_id).name %></td>
+                <td><%= meal.image %></td>
+                <td>
+                    <%= link_to 'editar', edit_meal_path(meal), class: "btn btn-outline-warning bord"%>
+                </td>
+                <td>
+                    <%= link_to 'apagar', meal_path(meal), 
+                    method: :delete, data: { confirm: "Tem certeza?" }, class: "btn btn-outline-danger bord"   %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+</br>
+<%= link_to  "nova refeição", new_meal_path, class: "btn btn-success" %>

@@ -5,23 +5,35 @@
         <% erro = message.to_s %>
     <% end %>
 <% end %>
-
+<h3>Editar categoria de refeição</h3>
+<hr>
 <%= form_for @meal_category do |f| %>
-    <% if erro == "name" %>
-        <div>
-            <%= f.label :Nome %> <br />
-            <%= f.text_field :name, class: "form-control is-invalid" %>
-            <div class="invalid-feedback invalido">
-              Por favor insira uma categoria!
+<div class="form-row">  
+        <div class="form-group col-md-6">
+            <% if erro == "name" %>
+                <div>
+                    <%= f.label :Nome %> <br />
+                    <%= f.text_field :name, class: "form-control is-invalid" %>
+                    <div class="invalid-feedback invalido">
+                    Por favor insira uma categoria!
+                    </div>
+                </div>
+            <% else %>
+                <div>
+                    <%= f.label :Nome %> <br />
+                    <%= f.text_field :name, class: "form-control" %>
+                </div>
+            <% end %>
+        </div>    
+        <div class="form-group col-md-6">
+            <fieldset disabled>
+            <div class="form-group">
+            <label for="disabledTextInput">Cadastrado em</label>
+            <input type="text" id="disabledTextInput" class="form-control" placeholder="<%=@meal_category.created_at.strftime("%d/%m/%Y") %>">
             </div>
-        </div>
-    <% else %>
-        <div>
-            <%= f.label :Nome %> <br />
-            <%= f.text_field :name, class: "form-control" %>
-        </div>
-    <% end %>
-    </br>
+            </fieldset>
+        </div>    
+    </div>        
     <%= f.submit 'atualizar categoria de refeição', class: "btn btn-success" %>
     <%= link_to 'voltar', :back, class: "btn btn-secondary" %>
 <% end %>

@@ -1,0 +1,33 @@
+<%= render 'banner' %>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Cadastrado em</th>
+             <th colspan="2" ></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <% @users.each_with_index do |user, index| %>
+            <tr>
+                <% if user.is_admin? %>
+                    <td><span class="badge badge-success">admin</span><span> </span><%= user.name %></td>
+                <% else %>
+                    <td><%= user.name %></td>
+                <% end %>
+                <td><%= user.email %></td>
+                <td><%= user.created_at.strftime("%d/%m/%Y") %></td>
+                <td>
+                    <%= link_to 'editar', edit_all_user_path(user), class: "btn btn-outline-warning bord"%>
+                </td>
+                <td>
+                    <%= link_to 'apagar', all_user_path(user), 
+                    method: :delete, data: { confirm: "Tem certeza?" }, class: "btn btn-outline-danger bord"   %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+</br>

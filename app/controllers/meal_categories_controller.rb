@@ -1,6 +1,9 @@
 class MealCategoriesController < ApplicationController
     before_action :set_meal_category, only: [:destroy, :show, :edit, :update]
-
+    before_action :authenticate_user!
+    before_action do 
+        redirect_to new_user_session_path unless current_user && current_user.is_admin?  
+    end
     def index
         @meal_categories = MealCategory.all
     end
