@@ -63,13 +63,25 @@
 }
 
 .footer {
+    padding: 1%;
+    list-style: none;
    position: fixed;
    left: 0;
    bottom: 0;
    width: 100%;
    background-color: rgba(97, 86, 86, 0.219);
-   color: black;
+   color: gray;
    text-align: center;
+}
+
+.ftlir{
+    float: right;
+    margin-right: 5%;
+}
+
+.ftlil{
+    float: left;
+    margin-left: 5%;
 }
 
 .bord{
