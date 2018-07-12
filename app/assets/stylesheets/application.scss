@@ -70,8 +70,9 @@
    bottom: 0;
    width: 100%;
    background-color: rgba(97, 86, 86, 0.219);
-   color: gray;
+   color: #333333;
    text-align: center;
+   font-family: specimen/Amaranth;
 }
 
 .ftlir{
@@ -90,4 +91,14 @@
 
 .invalido{
     display: inline;
-  }
+}
+
+.bgimg{
+    background-image: url(../images/jay-wennington-2065.jpg);
+    background-size: cover;
+}
+
+.tituloperfil{
+    color: white;
+    margin-top: 25%;
+}
