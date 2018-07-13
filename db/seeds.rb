@@ -7,3 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user = User.create! :name => 'Admin', :email => 'admin@admin.com', :password => '123456', :password_confirmation => '123456', :is_admin => true
+pendente = Situation.create! :description => 'pendente'
+entregue = Situation.create! :description => 'entregue'
+cancelado = Situation.create! :description => 'cancelado'

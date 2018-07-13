@@ -79,3 +79,15 @@
 .invalido{
     display: inline;
   }
+
+
+  .cardContainer{
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+
+  .imgCard{
+    display: flex;
+    flex-direction: row
+  }

@@ -15,12 +15,12 @@
     <tbody>
         <% @orders.each_with_index do |order, index| %>
             <tr>
-                <td><%= "100058" %></td>
-                <td><%= teste  %></td>
+                <td><%= order.id %></td>
+                <td><%= Situation.all.find(order.situation_id).description  %></td>
                 <td><%= order.created_at.strftime("%d/%m/%Y") %></td>
-                <td><%= bora lá %></td>
+                <td><%= User.all.find(order.user_id).name %></td>
                 <td><%= order.price %></td>
-                <td> pampa </td>
+                <td> "teste" </td>
                 <td>
                     <%= link_to 'editar', edit_order_path(order), class: "btn btn-outline-warning bord"%>
                 </td>
