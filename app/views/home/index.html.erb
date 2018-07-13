@@ -1,4 +1,8 @@
+
+<% session[:cart] ||= [] %>
+
 <div class="img">
+
 </div>
 <div class="top">    
 <% if user_signed_in? %>
@@ -84,3 +88,78 @@
     </div>
 <% end %>
 </div>
+
+</br>
+
+<% MealCategory.all.each do |s| %>
+    <h1><%= s.name %></h1>
+    <div class="cardContainer">
+        <% Meal.all.each do |meal| %>
+            <%if s.name == MealCategory.find(meal.meal_category_id).name %>
+                <div class="card" style="width: 18rem;">
+                    <%= image_tag(meal.image, class: "card-img-top" )%>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= meal.name %></h5>
+                        <p class="card-text"><%= meal.description %></p>
+                        <p class="card-text">R$ <%= meal.price %> por porção</p>
+                        <p>Quantidade</p>
+                        <%= number_field_tag( 'quantity', '1', min: 1,class: "form-control") %></br>
+                        <%= button_to 'adicionar ao meu prato', add_path(id: meal.id), method: :put,class: "btn btn-success" %>
+                    </div>
+                </div>
+            <% end %> 
+        <% end %>
+    </div>
+<% end %>
+<hr>
+
+<h1>Finalizou o seu prato? </h1>
+<p>Confira os itens pedidos antes de finalizar o pedido</p>
+<% total = 0 %>
+<% session[:cart].each do |f| %>
+    <% total = total + Meal.find(f).price %>
+    <div class="cardContainer">
+    <div class="card" style="width: 30rem;">
+        <div class="card-body">
+            <div class="imgCard">
+                <div>    
+                    <%= image_tag(Meal.find(f).image,height: '250', width: '250' )%>
+                </div>
+                <div>
+                    <h5 class="card-title"><%= Meal.find(f).name %></h5>
+                    <p class="card-text"><%= Meal.find(f).description %></p>
+                    <p class="card-text">R$ <%= Meal.find(f).price %> por porção</p>
+                    <p>Quantidade</p>
+                    <%= number_field_tag( 'quantity', '1', min: 1,class: "form-control") %></br>
+                    <%= button_to 'remover do meu prato', remove_path(id: Meal.find(f).id), method: :put,class: "btn btn-outline-danger" %>
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>
+
+<hr>
+
+<p>Preço total do pedido: <span style="color:green"><%="R$#{total}" %> </span></p>
+
+<% if user_signed_in? %>
+    <%= link_to  "finalizar e pagar", root_path, class: "btn btn-success" %>
+<% else %>
+    <p>Para finalizar o seu pedido, entre com sua conta ou faça o seu cadastro.</p>
+    <%= link_to  "entrar com minha conta", new_user_session_path, class: "btn btn-success" %>
+    <%= link_to  "fazer meu cadastro", new_user_registration_path, class: "btn btn-outline-success" %>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+

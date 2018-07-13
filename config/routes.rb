@@ -7,4 +7,13 @@ Rails.application.routes.draw do
   resources :meal_categories
   resources :all_users
   resources :orders
+  resources :order_meals
+  
+  
+
+  put '/add', to: 'cart#add_item', as: 'add'
+  put '/remove', to: 'cart#remove_item', as: 'remove'
+
+
+
 end

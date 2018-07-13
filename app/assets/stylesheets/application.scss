@@ -107,6 +107,20 @@
 .invalido{
     display: inline;
   }
+
+
+
+  .cardContainer{
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+
+  .imgCard{
+    display: flex;
+    flex-direction: row
+  }
+
 .img{
     background-image: url("../images/jay-wennington-2065.jpg");
     background-repeat: no-repeat;
@@ -283,3 +297,4 @@
 .button_new_order{
     margin-bottom: 10%;
 }
+
