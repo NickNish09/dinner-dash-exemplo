@@ -1,0 +1,74 @@
+<%= render 'banner' %>
+<% erro = "" %>
+<% if @user.errors %>
+    <% @user.errors.each do |message| %>
+        <% erro = message.to_s %>
+    <% end %>
+<% end %>
+<h3>Editar usuário</h3>
+<hr>
+<%= form_for(@user, url: all_user_path, method: :put) do |f| %>
+ <div class="form-row">  
+        <div class="form-group col-md-6">
+            <% if erro == "name" %>
+                <div>
+                    <%= f.label :Nome %> <br />
+                    <%= f.text_field :name, class: "form-control is-invalid" %>
+                    <div class="invalid-feedback invalido">
+                    Por favor insira um nome!
+                    </div>
+                </div>
+            <% else %>
+                <div>
+                    <%= f.label :Nome %> <br />
+                    <%= f.text_field :name, class: "form-control" %>
+                </div>
+            <% end %>
+        </div>    
+        <div class="form-group col-md-6">
+            <% if erro == "Perfil" %>
+                 <div>
+                    <%= f.label :Perfil %> <br />
+                    <%= f.select(:is_admin,options_for_select([["Administrador", true], ["Padrão", false]]), {:include_blank => "Escolha um Perfil"}, {class: "custom-select mr-sm-2 is-invalid"} ) %>
+                    <div class="invalid-feedback invalido">
+                        Por selecione um Perfil!
+                    </div>
+                </div>
+            <% else %>
+                <div>
+                    <%= f.label :Perfil %> <br />
+                    <%= f.select(:is_admin, options_for_select([["Administrador", true], ["Padrão", false]]), {:include_blank => "Escolha um Perfil"}, {class: "custom-select mr-sm-2 "} ) %>
+                </div>
+            <% end %>
+            </br>
+        </div>    
+    </div> 
+    <div class="form-row">  
+        <div class="form-group col-md-6">       
+            <% if erro == "Email" %>
+                <div>
+                    <%= f.label :Email %> <br />
+                    <%= f.text_field :email, class: "form-control is-invalid" %>
+                    <div class="invalid-feedback invalido">
+                    Por favor insira um email!
+                    </div>
+                </div>
+            <% else %>
+                <div>
+                    <%= f.label :Email %> <br />
+                    <%= f.text_field :email, class: "form-control" %>
+                </div>
+            <% end %>
+        </div>
+        <div class="form-group col-md-6">
+            <fieldset disabled>
+                <div class="form-group">
+                    <label for="disabledTextInput">Cadastrado em</label>
+                    <input type="text" id="disabledTextInput" class="form-control" placeholder="<%=@user.created_at.strftime("%d/%m/%Y") %>">
+                </div>
+            </fieldset>
+        </div> 
+    </div>     
+    <%= f.submit 'atualizar usuário', class: "btn btn-success" %>
+    <%= link_to 'voltar', :back, class: "btn btn-secondary" %>
+<% end %>
