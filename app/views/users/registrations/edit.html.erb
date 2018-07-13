@@ -1,13 +1,16 @@
 <div class="bgimg">
-  <%= link_to "dinnerdash", root_path %> 
-  <% if current_user.is_admin? %>
-    <%= link_to "Backoffice", meal_categories_path %>
-  <% end %>  
-  <%= link_to "Perfil", edit_user_registration_path %>
-  <%= link_to "Sair", destroy_user_session_path , method: :delete %>
+  <div class= "logol">
+    <%= link_to "dinnerdash", root_path, class: "logotext "%>
+  </div>
+  <div class="optr">
+    <% if current_user.is_admin? %>
+      <%= link_to "Backoffice", meal_categories_path, class: "nav-item nav-link text-warning backoff"%>
+    <% end %>  
+    <%= link_to "Perfil", edit_user_registration_path%>
+    <%= link_to "Sair", destroy_user_session_path , method: :delete%>
+  </div>
   <div class="tituloperfil">
-    <h1>Seu Perfil</h1>
-    </br>
+    <h1><b class="textoperfil">Seu Perfil</b></h1>
     <h3>Atualize os seus dados pessoais e senha.</h3>
   </div>
 </div>

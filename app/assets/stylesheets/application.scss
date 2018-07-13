@@ -94,11 +94,33 @@
 }
 
 .bgimg{
-    background-image: url(../images/jay-wennington-2065.jpg);
+    background-image: url(http://hotelmaher.com/wp-content/uploads/2014/02/maher-cocina22.jpg);
     background-size: cover;
+    padding: 2%;
 }
 
 .tituloperfil{
     color: white;
-    margin-top: 25%;
+    margin-top: 18%;
+    margin-left: 2%;
+    font-family: url(http://cufonfonts.com/font/circular-std-book);
+    
+}
+
+.textoperfil{
+    font-size: 70px;
+}
+
+.logotext{
+    text-decoration: none;
+    color: white;
+    font-size: 28px;
+    font-family: url(https://fonts.google.com/specimen/Amaranth);
+    font-weight: bold;
+}
+
+.optr{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
