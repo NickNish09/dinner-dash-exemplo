@@ -74,14 +74,15 @@
 .footer {
     padding: 1%;
     list-style: none;
-   position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   background-color: rgba(97, 86, 86, 0.219);
-   color: #333333;
-   text-align: center;
-   font-family: specimen/Amaranth;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(204, 204, 204);
+    color: #333333;
+    text-align: center;
+    font-family: specimen/Amaranth;
+    clear: both;
 }
 
 .ftlir{
@@ -272,4 +273,9 @@
 
 .tambutton{
     width: 30%;
+}
+
+.table_gender{
+    margin-left: 10%;
+    margin-right: 10%;
 }
