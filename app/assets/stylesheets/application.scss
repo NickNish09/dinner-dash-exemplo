@@ -193,9 +193,6 @@
   width: 100%;
   height: 50vh;
 }
-.front_back{
-  
-}
 
 #monte{
   font-size: 72px;
@@ -215,7 +212,7 @@
 
 .tituloperfil{
     color: white;
-    margin-top: 18%;
+    margin-top: 17%;
     margin-left: 2%;
     font-family: url(http://cufonfonts.com/font/circular-std-book);
     
@@ -236,21 +233,30 @@
 .optr{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+}
+
+.options_button{
+    display: flex;
+    flex-direction: row;
     justify-content: flex-end;
 }
 
-.logotext:link{
-    text-decoration: none;
-    color: white;
-    font-size: 28px;
-    font-family: url(https://fonts.google.com/specimen/Amaranth);
-    font-weight: bold;
+.backoffice_button{
+    margin-bottom: 10%;
 }
 
-.logotext:hover{
-    text-decoration: none;
+.ent_cad1{
+    text-decoration:none;
     color: white;
-    font-size: 28px;
-    font-family: url(https://fonts.google.com/specimen/Amaranth);
-    font-weight: bold;
+    margin-top: 3.75%;
+}
+
+.ent_cad1:hover{
+    text-decoration:none; 
+    color: white;
+}
+
+.tambutton{
+    width: 30%;
 }

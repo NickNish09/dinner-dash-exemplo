@@ -1,13 +1,17 @@
 <div class="bgimg">
-  <div class= "logol">
-    <%= link_to "dinnerdash", root_path, class: "logotext "%>
-  </div>
   <div class="optr">
-    <% if current_user.is_admin? %>
-      <%= link_to "Backoffice", meal_categories_path, class: "nav-item nav-link text-warning backoff"%>
-    <% end %>  
-    <%= link_to "Perfil", edit_user_registration_path%>
-    <%= link_to "Sair", destroy_user_session_path , method: :delete%>
+  <div class= "logol">
+    <%= link_to "dinnerdash", root_path, class: "dinner"%>
+  </div>
+    <div class="options_button">
+        <% if current_user.is_admin? %>
+        <%= link_to "Backoffice", meal_categories_path, class: "nav-item nav-link text-warning" %>
+        <% end %>
+        <ul></ul>
+      <%= link_to "Perfil", edit_user_registration_path, class: "ent_cad1"%>
+      <ul></ul>
+      <%= link_to "Sair", destroy_user_session_path , method: :delete, class: "ent_cad1"%>
+    </div>
   </div>
   <div class="tituloperfil">
     <h1><b class="textoperfil">Seu Perfil</b></h1>
@@ -51,7 +55,7 @@
     </div>
   </div>  
         <div class="actions">
-          <%= f.submit "atualizar meu perfil" , class: "btn btn-success "%>
+          <%= f.submit "atualizar meu perfil" , class: "btn btn-success tambutton"%>
         </div>
       <% end %>
 </form>  
