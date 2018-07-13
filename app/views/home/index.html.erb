@@ -4,9 +4,7 @@
 <% if user_signed_in? %>
     <% if current_user.is_admin? %>
     <div class="container">
-        <div>
             <%= link_to "dinnerdash", root_path, class: "dinner" %> 
-        </div>
         <div class="back">
             <%= link_to "backoffice", meal_categories_path, class: "nav-item nav-link text-warning backoff" %> 
             <ul></ul>
