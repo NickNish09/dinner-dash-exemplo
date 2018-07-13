@@ -1,33 +1,94 @@
+
 <% session[:cart] ||= [] %>
-<div>
-  <img src="../images/jay-wennington-2065.jpg" alt="login" width="100%" height="400vh">
+
+<div class="img">
+
 </div>
+<div class="top">    
 <% if user_signed_in? %>
     <% if current_user.is_admin? %>
-        <%= link_to "dinnerdash", root_path %> 
-        <%= link_to "Backoffice", meal_categories_path %> 
-        <%= link_to "Perfil", edit_user_registration_path %>
-        <%= link_to "Sair", destroy_user_session_path , method: :delete %>
+    <div class="container">
+            <%= link_to "dinnerdash", root_path, class: "dinner" %> 
+        <div class="back">
+            <%= link_to "backoffice", meal_categories_path, class: "nav-item nav-link text-warning backoff" %> 
+            <ul></ul>
+            <%= link_to "Perfil", edit_user_registration_path, class: "ent_cad" %>
+            <ul></ul>
+            <%= link_to "Sair", destroy_user_session_path , method: :delete, class: "ent_cad" %>
+        </div>
+    </div>
         </br>
-        <h1>Bem-vindo, <%="#{current_user.name}"  %></h1>
-        <h2>Monte o seu prato, escolha sua salada, molho, prato principal, guarnição e bebida</h2>
+
+         <br><br><br>
+         <br><br><br>
+         <br><br><br>
+        <div class="abaixo_menu">
+            <div class="bem">
+                <span id="bem_users">Bem-vindo, <%="#{current_user.name}"  %></span>
+            </div>
+            <div class="linha2">
+                <h3>Monte o seu prato, escolha sua salada,</h3>
+                <h3>molho, prato principal, guarnição e bebida</h3>
+            </div>
+        </div>
     <% else %>
-        <%= link_to "dinnerdash", root_path %>    
-        <%= link_to "Perfil", edit_user_registration_path %>
-        <%= link_to "Sair", destroy_user_session_path , method: :delete %>
+    <div class="container">
+        <div>
+            <%= link_to "dinnerdash", root_path, class: "dinner" %>    
+        </div>
+        <div class="container1">
+            <%= link_to "Perfil", edit_user_registration_path, class: "ent_cad" %>
+            <ul></ul>
+            <%= link_to "Sair", destroy_user_session_path , method: :delete, class: "ent_cad" %>
+        </div>
+    </div>
         </br>
-        <h1>Bem-vindo, <%="#{current_user.name}"  %></h1>
-        <h2>Monte o seu prato, escolha sua salada, molho, prato principal, guarnição e bebida</h2>
+
+         <br>
+         <br><br><br>
+         <br><br><br>
+         <br><br><br>
+         <div class="abaixo_menu">
+            <div class="bem">
+                <span id="bem_users">Bem-vindo, <%="#{current_user.name}"  %></span>
+            </div>
+            <div class="linha2">
+                <h3>Monte o seu prato, escolha sua salada,</h3>
+                <h3>molho, prato principal, guarnição e bebida</h3>
+            </div>
+         </div>
     <% end %>
 
 <% else %>
-    <%= link_to "dinnerdash", root_path %> 
-    <%= link_to "Entrar", new_user_session_path %>
-    <%= link_to "Cadastro", new_user_registration_path %>
+    <div class="container">
+        <div>
+          <%= link_to "dinnerdash", root_path,class: "dinner" %> 
+        </div>
+        <div class="container1">
+            <div>
+              <%= link_to "Entrar", new_user_session_path, class: "ent_cad" %> 
+            </div>
+          <ul></ul>
+            <div>
+              <%= link_to "Cadastro", new_user_registration_path, class: "ent_cad" %>
+            </div>
+        </div>
+    </div>
+
     </br>
-    <h1>Monte o seu prato</h1>
-    <h2>Escolha sua salada, molho, prato principal, guarnição e bebida</h2>
+    <br>
+    <br><br>
+    <br><br><br>
+    <br><br><br><br>x
+    <div class="abaixo_menu">
+        <div class="linha2">
+            <span id="monte">Monte o seu prato,</span>
+            <h3> Escolha sua salada, molho, prato principal, guarnição e bebida</h3>
+        </div>
+    </div>
 <% end %>
+</div>
+
 </br>
 
 <% MealCategory.all.each do |s| %>
@@ -89,6 +150,9 @@
     <%= link_to  "entrar com minha conta", new_user_session_path, class: "btn btn-success" %>
     <%= link_to  "fazer meu cadastro", new_user_registration_path, class: "btn btn-outline-success" %>
 <% end %>
+
+
+
 
 
 

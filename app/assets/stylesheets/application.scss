@@ -17,19 +17,27 @@
 
 
 
- .imgLogin{
-    width: 71%;
- 
- }
  .loginbox{
-    height: 50%;
+   height: 50%;
    padding-top: 80px;
-   padding-left: 100px;
+   padding-left: 65%;
+   padding-right: 8%;
+   position: absolute;
+   width: 100%;
+ }
+
+ .loginbox1{
+   height: 50%;
+   padding-top: 55px;
+   padding-left: 65%;
+   padding-right: 8%;
+   position: absolute;
+   width: 100%;
  }
 
  .login{
-     display: flex;
-    justify-content: center;
+  font-size: 48px;
+  color: #333333;
  }
 
  .loginScreen{
@@ -55,6 +63,7 @@
 .alert{
     text-align: center;
     margin-bottom: 0;
+    position: fixed;
 }
 
 .perfilbox{
@@ -63,15 +72,34 @@
 }
 
 .footer {
-   position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   background-color: rgba(97, 86, 86, 0.219);
-   color: black;
-   text-align: center;
+    padding: 1%;
+    list-style: none;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(204, 204, 204);
+    color: #333333;
+    text-align: center;
+    font-family: specimen/Amaranth;
+    clear: both;
 }
 
+.ftlir{
+    float: right;
+    margin-right: 5%;
+}
+
+.ftlil{
+    float: left;
+    margin-left: 5%;
+}
+.top{
+   position: absolute; 
+   top: 0px; 
+   left: 0; 
+   width: 100%;
+}
 .bord{
     border: 0;
 }
@@ -79,6 +107,7 @@
 .invalido{
     display: inline;
   }
+
 
 
   .cardContainer{
@@ -91,3 +120,181 @@
     display: flex;
     flex-direction: row
   }
+
+.img{
+    background-image: url("../images/jay-wennington-2065.jpg");
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    filter: brightness(45%);
+    width: 100%;
+    padding: 250px;
+}
+
+.abaixo_menu{
+    color: white;
+}
+
+.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.container1{
+  display: flex;
+  flex-direction: row;
+}
+
+.dinner{
+  text-decoration:none;
+  color: white;
+  font-size: 28px;
+  font-family: 'circular_book';
+  font-weight: bold;
+}
+.dinner:hover{
+  text-decoration:none; 
+  color: white;
+}
+
+.ent_cad{
+  text-decoration:none;
+  color: white;
+  margin-top: 10%;
+}
+.ent_cad:hover{
+  text-decoration:none; 
+  color: white;
+}
+.back{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.backoff{
+  margin-top: 7%;
+}
+
+@font-face{
+  font-family:"circular_book";
+  src: url(/assets/CircularStd-Book.woff) format("woff");
+}
+
+.linha2{
+  padding-left: 10%;
+}
+
+.bem{
+    padding-left: 10%;
+}
+.din{
+ font-size: 48px;
+ color: #333333; 
+}
+
+.img_login{
+  background-image: url("../images/sabri-tuzcu-365440.jpg");
+  background-repeat: no-repeat;
+  background-size:60% 100%;
+  width: 100%;
+  padding: 0px;
+  height: 100vh;
+}
+
+.img_back{
+  background-image: url("../images/helloquence-61189.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 150%;
+  filter: brightness(45%);
+  width: 100%;
+  height: 50vh;
+}
+.margen{
+  margin-top: 10%;
+}
+
+#bem_users1{
+  margin-left: 9.5%;
+  font-size: 52px;
+  color: white;
+}
+#bem_users2{
+  margin-left: 9.5%;
+  color: white;
+}
+#monte{
+  font-size: 72px;
+}
+#bem_users{
+  font-size: 52px;
+}
+#n_cont{
+  font-size: 18px;
+}
+
+.bgimg{
+    background-image: url(http://hotelmaher.com/wp-content/uploads/2014/02/maher-cocina22.jpg);
+    background-size: cover;
+    padding: 2%;
+}
+
+.tituloperfil{
+    color: white;
+    margin-top: 17%;
+    margin-left: 2%;
+    font-family: url(http://cufonfonts.com/font/circular-std-book);
+    
+}
+
+.textoperfil{
+    font-size: 70px;
+}
+
+.logotext{
+    text-decoration: none;
+    color: white;
+    font-size: 28px;
+    font-family: url(https://fonts.google.com/specimen/Amaranth);
+    font-weight: bold;
+}
+
+.optr{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.options_button{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.backoffice_button{
+    margin-bottom: 10%;
+}
+
+.ent_cad1{
+    text-decoration:none;
+    color: white;
+    margin-top: 3.75%;
+}
+
+.ent_cad1:hover{
+    text-decoration:none; 
+    color: white;
+}
+
+.tambutton{
+    width: 30%;
+}
+
+.table_gender{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.button_new_order{
+    margin-bottom: 10%;
+}
+
