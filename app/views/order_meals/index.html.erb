@@ -1,0 +1,89 @@
+<div class="img">
+<% quantity = 0%>
+</div>
+<div class="top">    
+<% if user_signed_in? %>
+    <% if current_user.is_admin? %>
+    <div class="container">
+            <%= link_to "dinnerdash", root_path, class: "dinner" %> 
+        <div class="back">
+            <%= link_to "backoffice", meal_categories_path, class: "nav-item nav-link text-warning backoff" %> 
+            <ul></ul>
+            <%= link_to "Perfil", edit_user_registration_path, class: "ent_cad" %>
+            <ul></ul>
+            <%= link_to "Sair", destroy_user_session_path , method: :delete, class: "ent_cad" %>
+        </div>
+    </div>
+        </br>
+
+         <br><br><br>
+         <br><br><br>
+         <br><br><br>
+        <div class="abaixo_menu">
+            <div class="bem">
+                <span id="bem_users">Bem-vindo, <%="#{current_user.name}"  %></span>
+            </div>
+            <div class="linha2">
+                <h3>Monte o seu prato, escolha sua salada,</h3>
+                <h3>molho, prato principal, guarnição e bebida</h3>
+            </div>
+        </div>
+    <% else %>
+    <div class="container">
+        <div>
+            <%= link_to "dinnerdash", root_path, class: "dinner" %>    
+        </div>
+        <div class="container1">
+            <%= link_to "Perfil", edit_user_registration_path, class: "ent_cad" %>
+            <ul></ul>
+            <%= link_to "Sair", destroy_user_session_path , method: :delete, class: "ent_cad" %>
+        </div>
+    </div>
+        </br>
+
+         <br>
+         <br><br><br>
+         <br><br><br>
+         <br><br><br>
+         <div class="abaixo_menu">
+            <div class="bem">
+                <span id="bem_users">Bem-vindo, <%="#{current_user.name}"  %></span>
+            </div>
+            <div class="linha2">
+                <h3>Monte o seu prato, escolha sua salada,</h3>
+                <h3>molho, prato principal, guarnição e bebida</h3>
+            </div>
+         </div>
+    <% end %>
+
+<% else %>
+    <div class="container">
+        <div>
+          <%= link_to "dinnerdash", root_path,class: "dinner" %> 
+        </div>
+        <div class="container1">
+            <div>
+              <%= link_to "Entrar", new_user_session_path, class: "ent_cad" %> 
+            </div>
+          <ul></ul>
+            <div>
+              <%= link_to "Cadastro", new_user_registration_path, class: "ent_cad" %>
+            </div>
+        </div>
+    </div>
+
+    </br>
+    <br>
+    <br><br>
+    <br><br><br>
+    <br><br><br><br>x
+    <div class="abaixo_menu">
+        <div class="linha2">
+            <span id="monte">Monte o seu prato,</span>
+            <h3> Escolha sua salada, molho, prato principal, guarnição e bebida</h3>
+        </div>
+    </div>
+<% end %>
+</div>
+
+</br>

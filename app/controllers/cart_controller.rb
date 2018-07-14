@@ -1,12 +1,11 @@
 class CartController < ApplicationController
     
     def add_item
+        quantity = params[:quantity]
         @product = params[:id]
-        if current_cart.include? @product
         
-        else
-            current_cart.push(@product)
-        end    
+        current_cart.push({product: @product,quantity: quantity})
+   
         redirect_to root_path
     end
  
