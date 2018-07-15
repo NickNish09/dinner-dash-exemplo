@@ -1,4 +1,3 @@
-
 <% session[:cart] ||= [] %>
 <div class="img">
 <% quantity = 0%>
@@ -91,17 +90,17 @@
 </br>
 
 <% MealCategory.all.each do |s| %>
-    <h1><%= s.name %></h1>
+    <h1 id="ref_space"><%= s.name %></h1>
     <div class="cardContainer">
         <% Meal.all.each do |meal| %>
             <%if s.name == MealCategory.find(meal.meal_category_id).name %>
-                <div class="card" style="width: 18rem;">
-                    <%= image_tag(meal.image, class: "card-img-top" )%>
-                    <div class="card-body">
-                        <h5 class="card-title"><%= meal.name %></h5>
-                        <p class="card-text"><%= meal.description %></p>
-                        <p class="card-text">R$ <%= meal.price %> por porção</p>
-                        <p>Quantidade</p>
+                <div class="card car_solo" style="width: 16rem; height: 29rem">
+                    <%= image_tag(meal.image, class: "img_certa1" )%>
+                    <div class="card-body ">
+                        <h5 class="card-title letra_img1"><%= meal.name %></h5>
+                        <p class="card-text letra_desc"><%= meal.description %></p>
+                        <p class="card-text color_porc">R$ <%= meal.price %> por porção</p>
+                        <span class="letra_desc1">Quantidade</span>
                         <% var = false %>
                         <% num = 0 %>
                         <% session[:cart].each do |x| %>
@@ -118,7 +117,7 @@
                         <% else %>
                             <%= form_with url: add_path(id:meal.id), method: :put do |f| %>
                                 <%= f.number_field :quantity,{:value => 1,:class => "multiple_text_field form-control", min: 1 } %></br><br>
-                                <%= f.submit "adicionar ao meu prato", class: "btn btn-success" %>
+                                <%= f.submit "adicionar ao meu prato", class: "btn btn-success tam1" %>
                             <% end %>
                         <% end %> 
                     </div>
@@ -129,29 +128,33 @@
 <% end %>
 <hr>
 
-<h1>Finalizou o seu prato? </h1>
-<p>Confira os itens pedidos antes de finalizar o pedido</p>
+<span id="finaliz">Finalizou o seu prato? </span>
+<br>
+<span id="confir" class="letra_desc1">Confira os itens pedidos antes de finalizar o pedido</span>
+<br><br>
+
 <% total = 0 %>
 <% session[:cart].each do |f| %>
     <% number = f["quantity"] %>
     <% total = total + ((Meal.find(f["product"]).price) * f["quantity"].to_f )%>
-    <div class="cardContainer">
-    <div class="card" style="width: 50rem;">
+    <div class="cardContainer1">
+    <div class="card car_solo1" style="width: 40rem; height: 12rem">
         <div class="card-body">
             <div class="imgCard">
                 <div>    
-                    <%= image_tag(Meal.find(f["product"]).image,height: '250', width: '250' )%>
+                    <%= image_tag(Meal.find(f["product"]).image,height: '150', width: '230' )%>
                 </div>
-                <div>
-                    <h5 class="card-title"><%= Meal.find(f["product"]).name %></h5>
-                    <p class="card-text">Quantidade:<%=f["quantity"]%></p>
-                    <p class="card-text">Preço unitário: R$ <%= Meal.find(f["product"]).price %></p>
-                    <p class="card-text">Preço total: R$ <%= Meal.find(f["product"]).price * f["quantity"].to_f%></p>
+                <div id="text_carrinho">
+                    <h5 class="card-title "><%= Meal.find(f["product"]).name %></h5>
+                    <br>
+                    <span class="card-text letra_desc1">Quantidade: <%=f["quantity"]%></span>
+                    <span class="card-text letra_desc1">Preço unitário: R$ <%= Meal.find(f["product"]).price %></span>
+                    <span class="card-text letra_desc1">Preço total: R$ <%= Meal.find(f["product"]).price * f["quantity"].to_f%></span>
                 </div>
                 <div>   
-                    <p>Quantidade</p>
+                    <span class="letra_desc1">Quantidade</span>
                         <%= form_with url: remove_path(id: Meal.find(f["product"]).id), method: :put do |f| %>
-                            <%= f.number_field :quantity, {:class => "multiple_text_field form-control", min: 1, :value => number} %></br><br>
+                            <%= f.number_field :quantity, {:class => "multiple_text_field form-control", min: 1, :value => number} %></br>
                             <%= f.submit "remover do meu prato", class: "btn btn-outline-danger" %>
                          <% end %>
                 </div>  
@@ -164,14 +167,18 @@
 
 <hr>
 
-<p>Preço total do pedido: <span style="color:green"><%="R$#{total}" %> </span></p>
+<p id="ref_space">Preço total do pedido: <span style="color:green"><%="R$#{total}" %> </span></p>
 
 <% if user_signed_in? %>
-    <%= link_to  "finalizar e pagar", order_meals_path, class: "btn btn-success button_new_order" %>
+    <div class="ref_space">
+        <%= link_to  "finalizar e pagar", order_meals_path, class: "btn btn-success button_new_order" %>
+    </div>
 <% else %>
-    <p>Para finalizar o seu pedido, entre com sua conta ou faça o seu cadastro.</p>
-    <%= link_to  "entrar com minha conta", new_user_session_path, class: "btn btn-success button_new_order" %>
-    <%= link_to  "fazer meu cadastro", new_user_registration_path, class: "btn btn-outline-success button_new_order" %>
+    <p id="ref_space" class="letra_desc1">Para finalizar o seu pedido, entre com sua conta ou faça o seu cadastro.</p>
+    <div id="ref_space">
+        <%= link_to  "entrar com minha conta", new_user_session_path, class: "btn btn-success button_new_order" %>
+        <%= link_to  "fazer meu cadastro", new_user_registration_path, class: "btn btn-outline-success button_new_order" %>
+    </div>
 <% end %>
 
 
