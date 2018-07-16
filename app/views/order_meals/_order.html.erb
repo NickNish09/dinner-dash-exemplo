@@ -1,0 +1,251 @@
+<% session[:dest] = false %>
+<div class="img">
+<% quantity = 0%>
+</div>
+<div class="top">    
+<% if user_signed_in? %>
+    <% if current_user.is_admin? %>
+        <% if  session[:cart] == [] %>
+            <div class="container">
+            <%= link_to "dinnerdash", root_path, class: "dinner" %> 
+        <div class="back">
+            <%= link_to "backoffice", meal_categories_path, class: "nav-item nav-link text-warning backoff" %> 
+            <ul></ul>
+            <%= link_to "Perfil", edit_user_registration_path, class: "ent_cad" %>
+            <ul></ul>
+            <%= link_to "Sair", destroy_user_session_path , method: :delete, class: "ent_cad" %>
+        </div>
+    </div>
+        <% else %>
+             <div class="container">
+                    <%= link_to "dinnerdash", order_meals_path,data: {toggle: "modal", target: "#exampleModalLong"}, class: "dinner" %> 
+                <div class="back">
+                    <%= link_to "backoffice",order_meals_path,data: {toggle: "modal", target: "#exampleModalLong"}, class: "nav-item nav-link text-warning backoff" %> 
+                    <ul></ul>
+                    <%= link_to "Perfil", order_meals_path,data: {toggle: "modal", target: "#exampleModalLong"}, class: "ent_cad" %>
+                    <ul></ul>
+                    <%= link_to "Sair", order_meals_path ,data: {toggle: "modal", target: "#exampleModalLong"}, class: "ent_cad" %>
+                </div>
+             </div>
+        <% end %>
+        </br>
+
+         <br><br><br>
+         <br><br><br>
+         <br><br><br>
+        <div class="abaixo_menu">
+            <div class="bem">
+                <span id="bem_users">Bem-vindo, <%="#{current_user.name}"  %></span>
+            </div>
+            <div class="linha2">
+                <h3>Monte o seu prato, escolha sua salada,</h3>
+                <h3>molho, prato principal, guarnição e bebida</h3>
+            </div>
+        </div>
+    <% else %>
+    <div class="container">
+        <div>
+            <%= link_to "dinnerdash", root_path, class: "dinner" %>    
+        </div>
+        <div class="container1">
+            <%= link_to "Perfil", edit_user_registration_path, class: "ent_cad" %>
+            <ul></ul>
+            <%= link_to "Sair", destroy_user_session_path , method: :delete, class: "ent_cad" %>
+        </div>
+    </div>
+        </br>
+
+         <br>
+         <br><br><br>
+         <br><br><br>
+         <br><br><br>
+         <div class="abaixo_menu">
+            <div class="bem">
+                <span id="bem_users">Bem-vindo, <%="#{current_user.name}"  %></span>
+            </div>
+            <div class="linha2">
+                <h3>Monte o seu prato, escolha sua salada,</h3>
+                <h3>molho, prato principal, guarnição e bebida</h3>
+            </div>
+         </div>
+    <% end %>
+
+<% else %>
+    <div class="container">
+        <div>
+          <%= link_to "dinnerdash", root_path,class: "dinner" %> 
+        </div>
+        <div class="container1">
+            <div>
+              <%= link_to "Entrar", new_user_session_path, class: "ent_cad" %> 
+            </div>
+          <ul></ul>
+            <div>
+              <%= link_to "Cadastro", new_user_registration_path, class: "ent_cad" %>
+            </div>
+        </div>
+    </div>
+
+    </br>
+    <br>
+    <br><br>
+    <br><br><br>
+    <br><br><br><br>x
+    <div class="abaixo_menu">
+        <div class="linha2">
+            <span id="monte">Monte o seu prato,</span>
+            <h3> Escolha sua salada, molho, prato principal, guarnição e bebida</h3>
+        </div>
+    </div>
+<% end %>
+</div>
+
+<% if session[:cart] != [] %>
+    </br>
+
+    <h1>O seu pedido</h1>
+    <p>Confira os itens pedidos antes de finalizar o pedido</p>
+    <% total = 0 %>
+    <% session[:cart].each do |f| %>
+        <% number = f["quantity"] %>
+        <% total = total + ((Meal.find(f["product"]).price) * f["quantity"].to_f )%>
+        <div class="cardContainer">
+        <div class="card" style="width: 50rem;">
+            <div class="card-body">
+                <div class="imgCard">
+                    <div>    
+                        <%= image_tag(Meal.find(f["product"]).image,height: '250', width: '250' )%>
+                    </div>
+                    <div>
+                        <h5 class="card-title"><%= Meal.find(f["product"]).name %></h5>
+                        <p class="card-text">Quantidade:<%=f["quantity"]%></p>
+                        <p class="card-text">Preço unitário: R$ <%= Meal.find(f["product"]).price %></p>
+                        <p class="card-text">Preço total: R$ <%= Meal.find(f["product"]).price * f["quantity"].to_f%></p>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    <% end %>
+
+
+    <hr>
+    <% tt = false %>
+    <% ordvar = nil %>
+    <div class="container2">
+    <div >
+            <h3>Deseja alterar algo?</h3>
+            <% Order.all.each do |ord| %>       
+                <% if User.all.find(ord.user_id) == current_user && session[:cart] != [] %>
+                    <% ordvar = ord %>
+                    <% tt =true %>
+                <% end %>
+            <% end %>
+            <% if tt == true %>
+                <%= link_to  "Clique aqui", order_path(ordvar.id) ,method: :delete %> para retornar ao nosso menu
+            <% end %>
+        </div>
+        <div>
+        <h3>Preço total do pedido: <span style="color:green"><%="R$#{total}" %> </span></h3>
+        <%= link_to  "finalizar e pagar", make_path(order_id: ordvar),method: :put, class: "btn btn-success button_new_order tambutton2" %>
+        </div>
+        
+    </div>
+<% else %>
+<div class="alert alert-success personalite" role="alert">
+  <strong>Pedido recebido! </strong>Aguarde na sua mesa
+</div>
+</br>
+</br>
+</br>
+    <% last = Order.order("created_at").last %>
+ <% OrderMeal.all.each do |om| %>
+    <% if om.order_id == last.id  %>
+            <div>    
+            <%= image_tag(Meal.find(om.meal_id).image,height: '80', width: '80' )%>
+        </div>
+        <div>
+            <h5 class="card-title"><%= Meal.find(om.meal_id).name %></h5>
+            <p class="card-text">Quantidade:<%=om.quantity%></p>
+            <p class="card-text">Preço unitário: R$ <%= Meal.find(om.meal_id).price %></p>
+            <p class="card-text">Preço total: R$ <%= Order.find(om.order_id).price %></p>
+        </div>
+    <% end %>
+<% end %> 
+
+
+<% end %>
+
+<hr>
+<div style="background-color: rgb(248, 248, 248);padding-top: 0;">
+    <h1>Pedidos anteriores</h1>
+    </br>
+    <table class="table button_new_order">
+        <thead class="thead">
+            <tr>
+                <th>Pedido de nº</th>
+                <th>Status</th>
+                <th>Data</th>
+                <th>Preço total</th>
+                <th>Detalhes</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <% Order.all.each_with_index do |order, index| %>
+
+                <%if User.all.find(order.user_id) == current_user && order != ordvar  %>
+                    <tr>
+                        <td><%= order.id %></td>
+                        <td><%= Situation.all.find(order.situation_id).description  %></td>
+                        <td><%= order.created_at.strftime("%d/%m/%Y") %></td>
+                        <td><%= order.price %></td>
+                        <td>
+                            <%= link_to  "ver itens pedidos", order_path(order) ,method: :get,data: {toggle: "modal", target: "#modal"}  %>
+                        </td>
+                    </tr>
+                <% end %>
+            <% end %>
+        </tbody>
+    </table>
+    </br>
+
+</div>
+
+<footer class="footer">
+  <li class="ftlil"><b>dinnerdash | todos os direitos reservados</b> </li>
+  <li class="ftlir">desenvolvido por Trainee da silva </li>
+</footer>
+
+
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Pedido em andamento !!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       Para sair dessa pagina efetue ou cancele o seu pedido!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <% if session[:cart] != [] %>
+            <%= link_to  "cancelar pedido", order_path(ordvar.id) ,method: :delete, class: "btn btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div> 

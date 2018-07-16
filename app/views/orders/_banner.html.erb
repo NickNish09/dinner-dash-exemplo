@@ -37,3 +37,37 @@
   </div>
 </nav>
 <br>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>Pedido de nº</th>
+            <th>Status</th>
+            <th>Data</th>
+            <th>Usuário</th>
+            <th>Preço total</th>
+            <th>Detalhes</th>
+            <th colspan="2" ></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <% Order.all.each_with_index do |order, index| %>
+            <tr>
+                <td><%= order.id %></td>
+                <td><%= Situation.all.find(order.situation_id).description  %></td>
+                <td><%= order.created_at.strftime("%d/%m/%Y") %></td>
+                <td><%= User.all.find(order.user_id).name %></td>
+                <td><%= order.price %></td>
+                <td> <%= link_to  "ver itens pedidos", order_path(order) ,method: :get,data: {toggle: "modal", target: "#modal"}  %> </td>
+                <td>
+                    <%= link_to 'editar', edit_order_path(order), class: "btn btn-outline-warning bord"%>
+                </td>
+                <td>
+                    <%= link_to 'apagar', order_path(order), 
+                    method: :delete, data: { confirm: "Tem certeza?" }, class: "btn btn-outline-danger bord"   %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+</br>

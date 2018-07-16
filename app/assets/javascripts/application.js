@@ -19,3 +19,7 @@
 //= require_tree .
 
 $('.alert').alert()
+
+$(function(){
+    $('#exampleModal').modal('show');
+});
