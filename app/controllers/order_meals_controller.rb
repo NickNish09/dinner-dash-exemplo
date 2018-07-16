@@ -1,9 +1,7 @@
 class OrderMealsController < ApplicationController
     before_action :set_order_meal, only: [:destroy, :show, :edit, :update]
     before_action :authenticate_user!
-    before_action do 
-        redirect_to new_user_session_path unless current_user && current_user.is_admin?  
-    end
+    
     def index
         @order_meals = OrderMeal.all
     end
