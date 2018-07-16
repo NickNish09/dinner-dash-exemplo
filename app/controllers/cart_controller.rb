@@ -3,9 +3,8 @@ class CartController < ApplicationController
     def add_item
         quantity = params[:quantity]
         @product = params[:id]
-        
         current_cart.push({product: @product,quantity: quantity})
-   
+         
         redirect_to root_path
     end
  

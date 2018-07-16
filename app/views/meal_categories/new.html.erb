@@ -1,3 +1,4 @@
+
 <%= render 'banner' %>
 <% erro = "" %>
 <% if @meal_category.errors %>
@@ -5,8 +6,10 @@
         <% erro = message.to_s %>
     <% end %>
 <% end %>
+
 <h3>Nova categoria de refeição</h3>
 <hr>
+<div class="container-fluid">
 <%= form_for @meal_category do |f| %>
     <% if erro == "name" %>
         <div>
@@ -23,6 +26,14 @@
         </div>
     <% end %>
     </br>
-    <%= f.submit 'criar categoria de refeição', class: "btn btn-success" %>
-    <%= link_to 'voltar', :back, class: "btn btn-secondary" %>
+    <%= f.submit 'criar categoria de refeição', class: "btn btn-success button_new_order" %>
+    <%= link_to 'voltar', :back, class: "btn btn-secondary  button_new_order" %>
 <% end %>
+</div>
+
+
+
+<footer class="footer">
+  <li class="ftlil"><b>dinnerdash | todos os direitos reservados</b> </li>
+  <li class="ftlir">desenvolvido por Trainee da silva </li>
+</footer>

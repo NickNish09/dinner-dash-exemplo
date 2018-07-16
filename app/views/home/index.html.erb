@@ -87,8 +87,8 @@
 <% end %>
 </div>
 <% if notice.to_s != "" %>
-      <div class="alert alert-warning alert-dismissible fade show personalite" role="alert">
-        <strong class="notice"><%= notice %></strong>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong class="notice "><%= notice %></strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -97,7 +97,7 @@
     <% end %>
 
     <% if alert.to_s != "" %>
-      <div class="alert alert-warning alert-dismissible fade show personalite" role="alert">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong class="alert"><%= alert %></strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -128,10 +128,10 @@
                             <% end %>
                         <% end %>
                         <% if var == true  %>
-                            <fieldset disabled>
-                                <input id="number" type="number" value="" step="1" min="1" class="form-control"></br></br>
-                            </fieldset>
-                            <%= button_to 'já adicionado ao meu prato', add_path(id: meal.id,quantity: quantity),{onclick: "set_quantity()", disabled: true ,method: :put,class: "btn btn-success"} %>
+                           <%= form_with url: add_path(id:meal.id), method: :put do |f| %>
+                                <%= f.number_field :quantity,{:value => 1,:class => "multiple_text_field form-control",disabled: true, min: 1 } %></br><br>
+                                <%= f.submit "já adicionado ao prato",disabled: true ,class: "btn btn-success tam1" %>
+                            <% end %> 
                         <% else %>
                             <%= form_with url: add_path(id:meal.id), method: :put do |f| %>
                                 <%= f.number_field :quantity,{:value => 1,:class => "multiple_text_field form-control", min: 1 } %></br><br>
@@ -152,21 +152,22 @@
 <br><br>
 
 <% total = 0 %>
+<div class="cardContainer1">
 <% session[:cart].each do |f| %>
     <% number = f["quantity"] %>
     <% total = total + ((Meal.find(f["product"]).price) * f["quantity"].to_f )%>
-    <div class="cardContainer1">
-    <div class="card car_solo1" style="width: 40rem; height: 12rem">
+    
+    <div class="card car_solo1" style="width: 40rem; height: 14rem">
         <div class="card-body">
             <div class="imgCard">
                 <div>    
-                    <%= image_tag(Meal.find(f["product"]).image,height: '150', width: '230' )%>
+                    <%= image_tag(Meal.find(f["product"]).image,height: '140', width: '140' )%>
                 </div>
                 <div id="text_carrinho">
                     <h5 class="card-title "><%= Meal.find(f["product"]).name %></h5>
                     <br>
-                    <span class="card-text letra_desc1">Quantidade: <%=f["quantity"]%></span>
-                    <span class="card-text letra_desc1">Preço unitário: R$ <%= Meal.find(f["product"]).price %></span>
+                    <span class="card-text letra_desc1">Quantidade: <%=f["quantity"]%></span><br>
+                    <span class="card-text letra_desc1">Preço unitário: R$ <%= Meal.find(f["product"]).price %></span><br>
                     <span class="card-text letra_desc1">Preço total: R$ <%= Meal.find(f["product"]).price * f["quantity"].to_f%></span>
                 </div>
                 <div>   
@@ -181,9 +182,9 @@
             </div>
         </div>
     </div>
-</div>
-<% end %>
 
+<% end %>
+</div>
 
 <hr>
 

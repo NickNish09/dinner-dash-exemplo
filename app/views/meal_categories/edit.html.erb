@@ -7,6 +7,7 @@
 <% end %>
 <h3>Editar categoria de refeição</h3>
 <hr>
+<div class="container-fluid">
 <%= form_for @meal_category do |f| %>
 <div class="form-row">  
         <div class="form-group col-md-6">
@@ -34,6 +35,13 @@
             </fieldset>
         </div>    
     </div>        
-    <%= f.submit 'atualizar categoria de refeição', class: "btn btn-success" %>
-    <%= link_to 'voltar', :back, class: "btn btn-secondary" %>
+    <%= f.submit 'atualizar categoria de refeição', class: "btn btn-success button_new_order" %>
+    <%= link_to 'voltar', :back, class: "btn btn-secondary button_new_order " %>
 <% end %>
+</div>
+
+
+<footer class="footer">
+  <li class="ftlil"><b>dinnerdash | todos os direitos reservados</b> </li>
+  <li class="ftlir">desenvolvido por Trainee da silva </li>
+</footer>

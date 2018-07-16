@@ -1,0 +1,163 @@
+<div class="img_back">
+</div>
+<div class="top">
+  <div class="container">
+    <%= link_to "dinnerdash", root_path, class: "dinner" %> 
+    <div class="back">
+      <%= link_to "Backoffice", meal_categories_path, class: "nav-item nav-link text-warning backoff" %> 
+      <ul></ul>
+      <%= link_to "Perfil", edit_user_registration_path, class: "ent_cad" %>
+      <ul></ul>
+      <%= link_to "Sair", destroy_user_session_path , method: :delete, class: "ent_cad" %>
+    </div>
+  </div>
+   <div class="margen">
+    <span id="bem_users1">Backoffice</span>
+    <h3 id="bem_users2">Gerencie pedidos,refeições e mais.</h3>
+  </div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to "Pedidos",orders_path, class: "nav-link"  %> 
+      </li>
+      <li class="nav-item">
+        <%= link_to "Usuários",all_users_path, class: "nav-link"  %>  
+      </li>
+      <li class="nav-item">
+        <%= link_to "Refeições", meals_path, class: "nav-link"  %> 
+      </li>
+      <li class="nav-item">
+        <%= link_to "Categorias de Refeição", meal_categories_path, class: "nav-link" %> 
+      </li>
+    </ul>
+  
+  </div>
+</nav>
+<br>
+
+
+<% erro = [] %>
+   
+<% if @order.errors %>
+    <% @order.errors.each do |message| %>
+        <% erro.push(message.to_s) %>
+    <% end %>
+<% end %>
+<h3>Editar refeição</h3>
+<hr>
+<div class="container-fluid">
+<%= form_for @order do |f| %>
+    <div class="form-row">  
+        <div class="form-group col-md-6">
+            <% if erro.include? "name" %>
+                <div>
+                    <%= f.label :Numero %> <br />
+                    <%= f.text_field :id, class: "form-control is-invalid" %>
+                    <div class="invalid-feedback invalido">
+                    Por favor insira um nome!
+                    </div>
+                </div>
+            <% else %>
+                <div>
+                    <%= f.label :Numero %> <br />
+                    <%= f.text_field :id, class: "form-control",disabled: true %>
+                </div>
+            <% end %>
+        </div>
+        <div class="form-group col-md-6">
+            <% if erro.include? "situation" %>
+                <div>
+                    <%= f.label :Status %> <br />
+                    <%= collection_select(:order, :situation_id,Situation.all, :id, :description, {:include_blank => "Escolha um Status"}, {class: "custom-select mr-sm-2 is-invalid"} ) %>
+                    <div class="invalid-feedback invalido">
+                        Por selecione uma Status !
+                    </div>
+                </div>
+            <% else %>
+                <div>
+                    <%= f.label :Status %> <br />
+                    <%= collection_select(:order, :situation_id,Situation.all, :id, :description, {:include_blank => "Escolha um Status"}, {class: "custom-select mr-sm-2 "} ) %>
+                </div>
+            <% end %>
+        </div>
+    </div>    
+
+
+    <div class="form-row">  
+        <div class="form-group col-md-6">
+            <% if erro.include? "name" %>
+                <div>
+                    <%= f.label :Data %> <br />
+            <input type="text" id="disabledTextInput" class="form-control" placeholder="<%=@order.created_at.strftime("%d/%m/%Y") %>">
+                    <div class="invalid-feedback invalido">
+                    Por favor insira um nome!
+                    </div>
+                </div>
+            <% else %>
+                <div>
+                    <%= f.label :Data %> <br />
+                <fieldset disabled>
+            <input type="text" id="disabledTextInput" class="form-control" placeholder="<%=@order.created_at.strftime("%d/%m/%Y") %>">
+                </fieldset>
+                </div>
+            <% end %>
+        </div>
+         <div class="form-group col-md-6">
+            <% if erro.include? "name" %>
+                <div>
+                    <%= f.label :Numero %> <br />
+                    <%= f.text_field :id, class: "form-control is-invalid" %>
+                    <div class="invalid-feedback invalido">
+                    Por favor insira um nome!
+                    </div>
+                </div>
+            <% else %>
+                <div>
+                    <%= f.label :Usuário %> <br />
+ <fieldset disabled>
+            <input type="text" id="disabledTextInput" class="form-control" placeholder="<%=User.find(@order.user_id).name%>">
+                </fieldset>                
+                </div>
+            <% end %>
+        </div> 
+</div>
+    
+    <div class="form-row">  
+        <div class="form-group col-md-6">
+            <% if erro.include? "name" %>
+                <div>
+                    <%= f.label :Numero %> <br />
+                    <%= f.text_field :id, class: "form-control is-invalid" %>
+                    <div class="invalid-feedback invalido">
+                    Por favor insira um nome!
+                    </div>
+                </div>
+            <% else %>
+                <div>
+                    <%= f.label :Preço_total %> <br />
+ <fieldset disabled>
+            <input type="text" id="disabledTextInput" class="form-control" placeholder="<%=@order.price%>">
+                </fieldset>                  </div>
+            <% end %>
+        </div>
+         <div class="form-group col-md-6">
+            
+        </div> 
+
+    <%= f.submit 'Atualizar pedido', class: "btn btn-success button_new_order" %>
+    <ul></ul>
+    <%= link_to 'voltar', :back, class: "btn btn-secondary button_new_order" %>
+<% end %>
+</div>
+</div>
+
+
+
+
+<footer class="footer">
+  <li class="ftlil"><b>dinnerdash | todos os direitos reservados</b> </li>
+  <li class="ftlir">desenvolvido por Trainee da silva </li>
+</footer>
