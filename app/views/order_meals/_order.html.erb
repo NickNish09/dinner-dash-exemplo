@@ -102,10 +102,11 @@
 
 <% if session[:cart] != [] %>
     </br>
-
+<div class="container-fluid">
     <h1>O seu pedido</h1>
     <p>Confira os itens pedidos antes de finalizar o pedido</p>
     <% total = 0 %>
+</div>
     <div class="cardContainer pro">
     <% session[:cart].each do |f| %>
         <% number = f["quantity"] %>
@@ -161,6 +162,7 @@
 </br>
 </br>
 </br>
+<div class="container-fluid">
 <h1> Seu último pedido: </h1>
 <span class="letra_desc1">Aguarde o seu pedido ser entregue </span></br></br>
     <% last = Order.order("created_at").last %>
@@ -188,11 +190,11 @@
     <% end %>
 <% end %> 
 </div>
-
+</div>
 <% end %>
 
 <hr>
-<div style="padding-top: 0;">
+<div style="padding-top: 0;" class="container-fluid">
     </br>
     <h1>Pedidos anteriores</h1>
     </br>
