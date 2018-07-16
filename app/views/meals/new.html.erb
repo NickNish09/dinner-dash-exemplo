@@ -6,6 +6,7 @@
         <% erro.push(message.to_s) %>
     <% end %>
 <% end %>
+<div class="container-fluid">
 <h3>Nova refeição</h3>
 <hr>
 <%= form_for @meal do |f| %>
@@ -32,7 +33,7 @@
                     <%= f.label :Categoria %> <br />
                     <%= collection_select(:meal, :meal_category_id,MealCategory.all, :id, :name, {:include_blank => "Escolha uma categoria"}, {class: "custom-select mr-sm-2 is-invalid"} ) %>
                     <div class="invalid-feedback invalido">
-                        Por selecione uma categoria !
+                        Por favor selecione uma categoria !
                     </div>
                 </div>
             <% else %>
@@ -84,6 +85,12 @@
         </div>    
     </div>    
     </br>
-    <%= f.submit 'Criar refeição', class: "btn btn-success" %>
-    <%= link_to 'voltar', :back, class: "btn btn-secondary" %>
+    <%= f.submit 'Criar refeição', class: "btn btn-success button_new_order" %>
+    <%= link_to 'voltar', :back, class: "btn btn-secondary button_new_order" %>
+</div>
 <% end %>
+
+<footer class="footer">
+  <li class="ftlil"><b>dinnerdash | todos os direitos reservados</b> </li>
+  <li class="ftlir">desenvolvido por Trainee da silva </li>
+</footer>

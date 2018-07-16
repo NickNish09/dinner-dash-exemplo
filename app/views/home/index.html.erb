@@ -187,7 +187,7 @@
     <% number = f["quantity"] %>
     <% total = total + ((Meal.find(f["product"]).price) * f["quantity"].to_f )%>
     
-    <div class="card car_solo1" style="width: 40rem; height: 14rem">
+    <div class="card car_solo1" style="width: 40rem; height: 12rem">
         <div class="card-body">
             <div class="imgCard">
                 <div>    
@@ -200,8 +200,7 @@
                     <span class="card-text letra_desc1">Preço unitário: R$ <%= Meal.find(f["product"]).price %></span><br>
                     <span class="card-text letra_desc1">Preço total: R$ <%= Meal.find(f["product"]).price * f["quantity"].to_f%></span>
                 </div>
-                <div>   
-
+                <div class="GOD">
                     <span class="letra_desc1">Quantidade</span>
                         <%= form_with url: remove_path(id: f), method: :put do |f| %>
                             <%= f.number_field :quantity, {:class => "multiple_text_field form-control", min: 1,disabled: true, :value => number} %></br><br>
