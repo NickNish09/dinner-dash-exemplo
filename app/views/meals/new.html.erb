@@ -62,7 +62,7 @@
 
     <div class="form-row">  
         <div class="form-group col-md-6">
-            <% if erro.include? "price" %>
+            <% if erro.include? "price"  %>
                 <div>
                     <%= f.label :Preço %> <br />
                     <%= f.text_field :price, class: "form-control is-invalid" %>

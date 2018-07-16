@@ -3,7 +3,11 @@
 <div class="cardContainer">
     <% @meals.each do |meal| %>
     <div class="card car_solo" style="width: 16rem; height: 20rem">
-            <%= image_tag(meal.image, class: "img_certa" )%>
+            <% if meal.image.attached? %>
+                <%= image_tag(meal.image, class: "img_certa" )%>
+            <% else %>
+                <%= image_tag("pedreiro.jpg", class: "img_certa" )%>
+            <% end %>
         <div class="card-body">
             <h5 class="card-title letra_img"><%= meal.name %></h5>
             <p class="card-text letra_desc"><%= meal.description %></p>

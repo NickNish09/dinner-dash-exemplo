@@ -43,6 +43,7 @@
             </div>
         </div>
     <% else %>
+    <% if  session[:cart] == [] %>
     <div class="container">
         <div>
             <%= link_to "dinnerdash", root_path, class: "dinner" %>    
@@ -54,7 +55,21 @@
         </div>
     </div>
         </br>
+        <% else %>
 
+                <div class="container">
+        <div>
+            <%= link_to "dinnerdash", order_meals_path,data: {toggle: "modal", target: "#exampleModalLong"}, class: "dinner" %>    
+        </div>
+        <div class="container1">
+            <%= link_to "Perfil",  order_meals_path,data: {toggle: "modal", target: "#exampleModalLong"}, class: "ent_cad" %>
+            <ul></ul>
+            <%= link_to "Sair",  order_meals_path,data: {toggle: "modal", target: "#exampleModalLong"}, class: "ent_cad" %>
+        </div>
+    </div>
+        </br>
+
+        <% end  %>
          <br>
          <br><br><br>
          <br><br><br>
@@ -64,8 +79,8 @@
                 <span id="bem_users">Bem-vindo, <%="#{current_user.name}"  %></span>
             </div>
             <div class="linha2">
-                <h3>Monte o seu prato, escolha sua salada,</h3>
-                <h3>molho, prato principal, guarnição e bebida</h3>
+                <h3>Neste espaço você pode finalizar seu pedido</h3>
+                <h3></h3>
             </div>
          </div>
     <% end %>

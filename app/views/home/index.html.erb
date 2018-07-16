@@ -131,7 +131,7 @@
     <span class="sr-only">Previous</span>
   </a>
   <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true" style="color: balck;></span>
+    <span class="carousel-control-next-icon" aria-hidden="true" style="color: balck;"></span>
     <span class="sr-only">Next</span>
   </a>
 </div>
@@ -143,7 +143,9 @@
         <% Meal.all.each do |meal| %>
             <%if s.name == MealCategory.find(meal.meal_category_id).name %>
                 <div class="card car_solo" style="width: 16rem; height: 29rem">
-                    <%= image_tag(meal.image, class: "img_certa1" )%>
+                    
+                <%= image_tag(meal.image, class: "img_certa1" )%>
+           
                     <div class="card-body ">
                         <h5 class="card-title letra_img1"><%= meal.name %></h5>
                         <p class="card-text letra_desc"><%= meal.description %></p>
@@ -190,8 +192,11 @@
     <div class="card car_solo1" style="width: 40rem; height: 12rem">
         <div class="card-body">
             <div class="imgCard">
-                <div>    
-                    <%= image_tag(Meal.find(f["product"]).image,height: '140', width: '140' )%>
+                <div> 
+                 
+                <%= image_tag(Meal.find(f["product"]).image,height: '140', width: '140' )%>
+           
+                    
                 </div>
                 <div id="text_carrinho">
                     <h5 class="card-title "><%= Meal.find(f["product"]).name %></h5>
