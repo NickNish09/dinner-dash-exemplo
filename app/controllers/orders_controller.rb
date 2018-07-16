@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-    before_action :set_order, only: [:destroy, :show, :edit, :update]
+    before_action :set_order, only: [:destroy, :show, :show2, :edit, :update]
     before_action :authenticate_user!
     before_action do 
         redirect_to new_user_session_path unless current_user && current_user.is_admin?  
@@ -15,15 +15,22 @@ class OrdersController < ApplicationController
     def create
         @order= Order.new(order_params)
         if @order.save
-            redirect_to orders_path
+            redirect_to order_meals_path
         else
             render :new
         end
     end
 
     def destroy
+
         @order.destroy
-        redirect_to orders_path
+        if session[:dest] == true
+            session[:dest] = false
+            redirect_to orders_path
+        else
+            redirect_to root_path
+
+        end
     end
 
     def edit
@@ -47,6 +54,6 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-        params.require(:order).permit(:price)
+        params.permit(:price,:user_id,:situation_id)
     end
 end

@@ -11,8 +11,8 @@ class CartController < ApplicationController
  
  
      def remove_item
-        @del_product = params[:id].to_i
-        current_cart.pop(@del_product)
+        @del_product = params[:id]
+        current_cart.delete(@del_product)
         redirect_to root_path
     end
 

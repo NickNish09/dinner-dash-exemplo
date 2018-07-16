@@ -87,7 +87,25 @@
     </div>
 <% end %>
 </div>
+<% if notice.to_s != "" %>
+      <div class="alert alert-warning alert-dismissible fade show personalite" role="alert">
+        <strong class="notice"><%= notice %></strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      </br>
+    <% end %>
 
+    <% if alert.to_s != "" %>
+      <div class="alert alert-warning alert-dismissible fade show personalite" role="alert">
+        <strong class="alert"><%= alert %></strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      </br>
+    <% end %>
 </br>
 
 <% MealCategory.all.each do |s| %>
@@ -112,7 +130,7 @@
                         <% end %>
                         <% if var == true  %>
                             <fieldset disabled>
-                                <input id="number" type="number" value="<%= num %>" step="1" min="1" class="form-control"></br></br>
+                                <input id="number" type="number" value="" step="1" min="1" class="form-control"></br></br>
                             </fieldset>
                             <%= button_to 'já adicionado ao meu prato', add_path(id: meal.id,quantity: quantity),{onclick: "set_quantity()", disabled: true ,method: :put,class: "btn btn-success"} %>
                         <% else %>
@@ -150,8 +168,8 @@
                 </div>
                 <div>   
                     <p>Quantidade</p>
-                        <%= form_with url: remove_path(id: Meal.find(f["product"]).id), method: :put do |f| %>
-                            <%= f.number_field :quantity, {:class => "multiple_text_field form-control", min: 1, :value => number} %></br><br>
+                        <%= form_with url: remove_path(id: f), method: :put do |f| %>
+                            <%= f.number_field :quantity, {:class => "multiple_text_field form-control", min: 1,disabled: true, :value => number} %></br><br>
                             <%= f.submit "remover do meu prato", class: "btn btn-outline-danger" %>
                          <% end %>
                 </div>  
@@ -167,7 +185,13 @@
 <p>Preço total do pedido: <span style="color:green"><%="R$#{total}" %> </span></p>
 
 <% if user_signed_in? %>
-    <%= link_to  "finalizar e pagar", order_meals_path, class: "btn btn-success button_new_order" %>
+    <% if session[:cart] == []%>
+    <p>Para prosseguir monte o seu prato</p>
+        <%= button_to 'finalizar e pagar', orders_path(price: total,user_id: current_user.id,situation_id: Situation.find(1)),{ method: :post,disabled: true,class: "btn btn-success button_new_order"} %>
+
+    <% else %>
+        <%= button_to 'finalizar e pagar', orders_path(price: total,user_id: current_user.id,situation_id: Situation.find(1)),{ method: :post,class: "btn btn-success button_new_order"} %>
+    <% end %>
 <% else %>
     <p>Para finalizar o seu pedido, entre com sua conta ou faça o seu cadastro.</p>
     <%= link_to  "entrar com minha conta", new_user_session_path, class: "btn btn-success button_new_order" %>
@@ -179,9 +203,6 @@
   <li class="ftlil"><b>dinnerdash | todos os direitos reservados</b> </li>
   <li class="ftlir">desenvolvido por Trainee da silva </li>
 </footer>
-
-
-
 
 
 

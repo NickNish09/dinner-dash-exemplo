@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   put '/add', to: 'cart#add_item', as: 'add'
   put '/remove', to: 'cart#remove_item', as: 'remove'
+  put '/make', to: 'order_meals#make', as: 'make'
 
 
 

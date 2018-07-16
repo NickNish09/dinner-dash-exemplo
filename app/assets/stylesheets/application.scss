@@ -172,6 +172,14 @@
    flex-direction: row;
 }
 
+.container2{
+  display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+}
+
+
+
 .dinner{
   text-decoration:none;
   color: white;
@@ -315,6 +323,9 @@
 .tambutton{
     width: 30%;
 }
+.tambutton2{
+  width: 50%;
+}
 
 .table_gender{
     margin-left: 10%;
@@ -325,3 +336,8 @@
     margin-bottom: 10%;
 }
 
+.personalite{
+  position: absolute;
+  width: 100%;
+  text-align: start;
+}
