@@ -189,7 +189,7 @@
 <hr>
 
 <p id="ref_space">Preço total do pedido: <span style="color:green"><%="R$#{total}" %> </span></p>
-
+<div id="ref_space"> 
 <% if user_signed_in? %>
 
     <% if session[:cart] == []%>
@@ -207,7 +207,7 @@
         <%= link_to  "fazer meu cadastro", new_user_registration_path, class: "btn btn-outline-success button_new_order" %>
     </div>
 <% end %>
-
+</div>
 
 <footer class="footer">
   <li class="ftlil"><b>dinnerdash | todos os direitos reservados</b> </li>

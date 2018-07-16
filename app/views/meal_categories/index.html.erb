@@ -9,12 +9,17 @@
                  <th colspan="2" ></th>
             </tr>
         </thead>
-
+    <% count = 0 %>
         <tbody>
             <% @meal_categories.each_with_index do |category, index| %>
+                <% Meal.all.each do |kk| %>
+                    <% if kk.meal_category_id == category.id %>
+                        <% count = count +1 %>
+                    <% end %>
+                <% end %>
                 <tr>
                     <td><%= category.name %></td>
-                    <td>4</td>
+                    <td><%= count %></td>
                     <td><%= category.created_at.strftime("%d/%m/%Y") %></td>
                     <td>
                         <%= link_to 'editar', edit_meal_category_path(category), class: "btn btn-outline-warning bord"%>
@@ -24,6 +29,7 @@
                         method: :delete, data: { confirm: "Tem certeza?" }, class: "btn btn-outline-danger bord"   %>
                     </td>
                 </tr>
+                <% count = 0 %>
             <% end %>
         </tbody>
     </table>
