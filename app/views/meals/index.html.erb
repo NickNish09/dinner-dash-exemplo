@@ -11,7 +11,7 @@
         <div class="card-body">
             <h5 class="card-title letra_img"><%= meal.name %></h5>
             <p class="card-text letra_desc"><%= meal.description %></p>
-            <p class="card-text color_porc">R$ <%= meal.price %> por porção</p>
+            <p class="card-text color_porc">R<%= number_to_currency(meal.price) %> por porção</p>
             <div>
                 <%= link_to 'editar', edit_meal_path(meal), class: "btn btn-warning tam"%>
                 <%= link_to 'excluir', meal_path(meal),method: :delete, data: { confirm: "Tem certeza?" }, class: "btn btn-danger tam"   %>

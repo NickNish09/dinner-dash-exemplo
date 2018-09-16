@@ -6,7 +6,7 @@
 <% if user_signed_in? %>
     <% if current_user.is_admin? %>
         <% if  session[:cart] == [] %>
-            <div class="container">
+            <div class="container container-new">
             <%= link_to "dinnerdash", root_path, class: "dinner" %> 
         <div class="back">
             <%= link_to "backoffice", meal_categories_path, class: "nav-item nav-link text-warning backoff" %> 
@@ -17,7 +17,7 @@
         </div>
     </div>
         <% else %>
-             <div class="container">
+             <div class="container container-new">
                     <%= link_to "dinnerdash", order_meals_path,data: {toggle: "modal", target: "#exampleModalLong"}, class: "dinner" %> 
                 <div class="back">
                     <%= link_to "backoffice",order_meals_path,data: {toggle: "modal", target: "#exampleModalLong"}, class: "nav-item nav-link text-warning backoff" %> 
@@ -28,11 +28,7 @@
                 </div>
              </div>
         <% end %>
-        </br>
-
-         <br><br><br>
-         <br><br><br>
-         <br><br><br>
+        </br><br><br><br>
         <div class="abaixo_menu">
             <div class="bem">
                 <span id="bem_users">Bem-vindo, <%="#{current_user.name}"  %></span>
@@ -44,7 +40,7 @@
         </div>
     <% else %>
     <% if  session[:cart] == [] %>
-    <div class="container">
+    <div class="container container-new">
         <div>
             <%= link_to "dinnerdash", root_path, class: "dinner" %>    
         </div>
@@ -86,7 +82,7 @@
     <% end %>
 
 <% else %>
-    <div class="container">
+    <div class="container container-new">
         <div>
           <%= link_to "dinnerdash", root_path,class: "dinner" %> 
         </div>
@@ -119,6 +115,7 @@
     </br>
 <div class="container-fluid">
     <h1>O seu pedido</h1>
+    <hr>
     <p>Confira os itens pedidos antes de finalizar o pedido</p>
     <% total = 0 %>
 </div>
@@ -131,7 +128,7 @@
                 <div class="card-body">
                     <div class="imgCard">
                         <div>    
-                            <%= image_tag(Meal.find(f["product"]).image,height: '140', width: '140' )%>
+                            <%= image_tag(Meal.find(f["product"]).image,height: '140', width: '180' )%>
                         </div>
                         <div id="text_carrinho">
                             <h5 class="card-title"><%= Meal.find(f["product"]).name %></h5>
@@ -151,7 +148,7 @@
     <hr>
     <% tt = false %>
     <% ordvar = nil %>
-    <div class="container2">
+    <div class="container-fluid">
     <div >
             <h3>Deseja alterar algo?</h3>
             <% Order.all.each do |ord| %>       
@@ -165,7 +162,8 @@
             <% end %>
         </div>
         <div>
-        <h3>Preço total do pedido: <span style="color:green"><%="R$#{total}" %> </span></h3>
+        <br><br>
+        <h3>Preço total do pedido: <span style="color:green"><%="R#{number_to_currency(total)}" %> </span></h3>
         <%= link_to  "finalizar e pagar", make_path(order_id: ordvar),method: :put, class: "btn btn-success button_new_order tambutton2" %>
         </div>
         
@@ -189,7 +187,7 @@
             <div class="card-body">
                 <div class="imgCard">
                     <div>    
-                        <%= image_tag(Meal.find(om.meal_id).image,height: '140', width: '140' )%>
+                        <%= image_tag(Meal.find(om.meal_id).image,height: '140', width: '180' )%>
                     </div>
                     <div id="text_carrinho">
                         <h5 class="card-title"><%= Meal.find(om.meal_id).name %></h5>
@@ -210,10 +208,8 @@
 
 <hr>
 <div style="padding-top: 0;" class="container-fluid">
-    </br>
     <h1>Pedidos anteriores</h1>
-    </br>
-    </br>
+
     <table class="table button_new_order">
         <thead class="thead">
             <tr>
@@ -243,9 +239,9 @@
         </tbody>
     </table>
     </br>
-
 </div>
-
+<div style="margin: 2em;">
+</div>
 <footer class="footer">
   <li class="ftlil"><b>dinnerdash | todos os direitos reservados</b> </li>
   <li class="ftlir">desenvolvido por Trainee da silva </li>

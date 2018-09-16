@@ -5,7 +5,7 @@
 <div class="top">    
 <% if user_signed_in? %>
     <% if current_user.is_admin? %>
-    <div class="container">
+    <div class="container container-new">
             <%= link_to "dinnerdash", root_path, class: "dinner" %> 
         <div class="back">
             <%= link_to "backoffice", meal_categories_path, class: "nav-item nav-link text-warning backoff" %> 
@@ -15,22 +15,18 @@
             <%= link_to "Sair", destroy_user_session_path , method: :delete, class: "ent_cad" %>
         </div>
     </div>
-        </br>
-
-         <br><br><br>
-         <br><br><br>
-         <br><br><br>
+        
         <div class="abaixo_menu">
             <div class="bem">
                 <span id="bem_users">Bem-vindo, <%="#{current_user.name}"  %></span>
             </div>
+            <br>
             <div class="linha2">
-                <h3>Monte o seu prato, escolha sua salada,</h3>
-                <h3>molho, prato principal, guarnição e bebida</h3>
+                <h3>Monte o seu prato, escolha sua salada, molho, prato principal,<br> guarnição e bebida</h3>
             </div>
         </div>
     <% else %>
-    <div class="container">
+    <div class="container container-new">
         <div>
             <%= link_to "dinnerdash", root_path, class: "dinner" %>    
         </div>
@@ -41,24 +37,18 @@
         </div>
     </div>
         </br>
-
-         <br>
-         <br><br><br>
-         <br><br><br>
-         <br><br><br>
          <div class="abaixo_menu">
             <div class="bem">
                 <span id="bem_users">Bem-vindo, <%="#{current_user.name}"  %></span>
             </div>
             <div class="linha2">
-                <h3>Monte o seu prato, escolha sua salada,</h3>
-                <h3>molho, prato principal, guarnição e bebida</h3>
+                <h3>Monte o seu prato, escolha sua salada, molho, prato principal,<br> guarnição e bebida</h3>
             </div>
          </div>
     <% end %>
 
 <% else %>
-    <div class="container">
+    <div class="container container-new">
         <div>
           <%= link_to "dinnerdash", root_path,class: "dinner" %> 
         </div>
@@ -72,12 +62,7 @@
             </div>
         </div>
     </div>
-
-    </br>
     <br>
-    <br><br>
-    <br><br><br>
-    <br><br><br><br>x
     <div class="abaixo_menu">
         <div class="linha2">
             <span id="monte">Monte o seu prato,</span>
@@ -139,6 +124,7 @@
 
 <% MealCategory.all.each do |s| %>
     <h1 id="ref_space"><%= s.name %></h1>
+    <hr>
     <div class="cardContainer">
         <% Meal.all.each do |meal| %>
             <%if s.name == MealCategory.find(meal.meal_category_id).name %>
@@ -149,7 +135,7 @@
                     <div class="card-body ">
                         <h5 class="card-title letra_img1"><%= meal.name %></h5>
                         <p class="card-text letra_desc"><%= meal.description %></p>
-                        <p class="card-text color_porc">R$ <%= meal.price %> por porção</p>
+                        <p class="card-text color_porc">R<%= number_to_currency(meal.price) %> por porção</p>
                         <span class="letra_desc1">Quantidade</span>
                         <% var = false %>
                         <% num = 0 %>
@@ -184,7 +170,7 @@
 <br><br>
 
 <% total = 0 %>
-<div class="cardContainer1">
+<div class="cardContainer">
 <% session[:cart].each do |f| %>
     <% number = f["quantity"] %>
     <% total = total + ((Meal.find(f["product"]).price) * f["quantity"].to_f )%>
@@ -202,8 +188,8 @@
                     <h5 class="card-title "><%= Meal.find(f["product"]).name %></h5>
                     <br>
                     <span class="card-text letra_desc1">Quantidade: <%=f["quantity"]%></span><br>
-                    <span class="card-text letra_desc1">Preço unitário: R$ <%= Meal.find(f["product"]).price %></span><br>
-                    <span class="card-text letra_desc1">Preço total: R$ <%= Meal.find(f["product"]).price * f["quantity"].to_f%></span>
+                    <span class="card-text letra_desc1">Preço unitário: R<%= number_to_currency(Meal.find(f["product"]).price) %></span><br>
+                    <span class="card-text letra_desc1">Preço total: R<%= number_to_currency(Meal.find(f["product"]).price * f["quantity"].to_f) %></span>
                 </div>
                 <div class="GOD">
                     <span class="letra_desc1">Quantidade</span>
@@ -222,7 +208,7 @@
 
 <hr>
 
-<p id="ref_space">Preço total do pedido: <span style="color:green"><%="R$#{total}" %> </span></p>
+<p id="ref_space">Preço total do pedido: <span style="color:green"><%="R#{number_to_currency(total)}" %> </span></p>
 <div id="ref_space"> 
 <% if user_signed_in? %>
 

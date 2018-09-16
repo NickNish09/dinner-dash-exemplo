@@ -5,7 +5,7 @@
 <div class="top">    
 <% if user_signed_in? %>
     <% if current_user.is_admin? %>
-    <div class="container">
+    <div class="container container-new">
             <%= link_to "dinnerdash", root_path, class: "dinner" %> 
         <div class="back">
             <%= link_to "backoffice", meal_categories_path, class: "nav-item nav-link text-warning backoff" %> 
@@ -16,10 +16,6 @@
         </div>
     </div>
         </br>
-
-         <br><br><br>
-         <br><br><br>
-         <br><br><br>
         <div class="abaixo_menu">
             <div class="bem">
                 <span id="bem_users">Bem-vindo, <%="#{current_user.name}"  %></span>
@@ -144,8 +140,10 @@
 </br>
 </br>
 </br>
+<div class="container-fluid">
 <h1> Seu último pedido: </h1>
 <span class="letra_desc1">Aguarde o seu pedido ser entregue </span></br></br>
+</div>
     <% last = Order.order("created_at").last %>
  <div class="cardContainer1 pro">
  <% OrderMeal.all.each do |om| %>
@@ -155,7 +153,7 @@
             <div class="card-body">
                 <div class="imgCard">
                     <div>    
-                        <%= image_tag(Meal.find(om.meal_id).image,height: '140', width: '140' )%>
+                        <%= image_tag(Meal.find(om.meal_id).image,height: '140', width: '180' )%>
                     </div>
                     <div id="text_carrinho">
                         <h5 class="card-title"><%= Meal.find(om.meal_id).name %></h5>
@@ -211,7 +209,8 @@
     </br>
 </div>
 </div>
-
+<div style="margin: 2em;">
+</div>
 <footer class="footer">
   <li class="ftlil"><b>dinnerdash | todos os direitos reservados</b> </li>
   <li class="ftlir">desenvolvido por Trainee da silva </li>

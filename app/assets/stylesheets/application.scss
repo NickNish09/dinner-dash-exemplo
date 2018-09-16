@@ -15,7 +15,18 @@
  */
  @import "bootstrap";
 
+* {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 
+.nav-link{
+  padding: 0.5em 1em !important;
+}
+
+.container-new {
+  padding: 1.5em;
+  margin-left: 9.7em;
+}
 
  .loginbox{
    height: 50%;
@@ -51,7 +62,8 @@
  }
 
  #ref_space{
- margin-left: 5%;
+  margin-left: 5%;
+  margin-top: 1em;
  }
  
  .loginScreen{
@@ -158,6 +170,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   margin-left: 8.5%;
+  margin-right: 8.5%;
 }
 .car_solo{
   margin-left: 1%;
@@ -201,15 +214,17 @@
 }
 
 .img{
-    background-image: url("../images/jay-wennington-2065.jpg");
+    //background-image: url("../images/jay-wennington-2065.jpg");
+    background-image: url("../images/background-dd.png");
+    background-size: cover;
     background-repeat: no-repeat;
-    background-size:100% 100%;
     filter: brightness(45%);
     width: 100%;
     padding: 250px;
 }
 
 .abaixo_menu{
+  margin-top: 8em;
     color: white;
 }
 
@@ -238,6 +253,7 @@
   font-size: 28px;
   font-family: 'circular_book';
   font-weight: bold;
+  margin-right: 65vw;
 }
 .dinner:hover{
   text-decoration:none; 
@@ -271,6 +287,11 @@
   padding-left: 10%;
 }
 
+.linha2 h3{
+  font-weight: 200px;
+  opacity: 0.75;
+}
+
 .bem{
     padding-left: 10%;
 }
@@ -297,7 +318,7 @@
   height: 50vh;
 }
 .margen{
-  margin-top: 10%;
+  margin-top: 8.6%;
 }
 
 #bem_users1{
@@ -385,15 +406,18 @@
 }
 
 .button_new_order{
-    margin-bottom: 10%;
+  margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    width: 40%;
 }
 .GOD{
   margin-left: 5%;
 }
 .img2{
-  background-image: url("../images/elli-o-43178.jpg");
+  //background-image: url("../images/elli-o-43178.jpg");
+  background-image: url("../images/backgrorund-order.png");
   background-repeat: no-repeat;
-  background-size:100% 100%;
+  background-size: cover;
   filter: brightness(45%);
   width: 100%;
   padding: 250px;
